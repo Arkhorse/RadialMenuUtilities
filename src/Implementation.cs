@@ -10,14 +10,13 @@ namespace RadialMenuUtilities
 {
     public class Implementation : MelonMod
     {
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            Debug.Log($"[{Info.Name}] Version {Info.Version} loaded!");
+            MelonLogger.Msg($"[{Info.Name}] Version {Info.Version} loaded!");
         }
-
         internal static void Log(string message)
         {
-            MelonLogger.Log(message);
+            MelonLogger.Msg(message);
         }
 
         internal static void Log(string message, params object[] parameters)
@@ -28,7 +27,7 @@ namespace RadialMenuUtilities
 
         internal static void LogWarning(string message)
         {
-            MelonLogger.LogWarning(message);
+            MelonLogger.Warning(message);
         }
 
         internal static void LogWarning(string message, params object[] parameters)
