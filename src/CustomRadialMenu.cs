@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Il2Cpp;
 using UnityEngine;
 
 namespace RadialMenuUtilities
@@ -32,7 +28,7 @@ namespace RadialMenuUtilities
 
         internal void ShowGearItems()
         {
-            Panel_ActionsRadial radial = InterfaceManager.m_Panel_ActionsRadial;
+            Panel_ActionsRadial radial = InterfaceManager.GetPanel<Panel_ActionsRadial>();
             radial.m_Queue.Add(new System.Action(ShowGearItems));
             GearItem[] array = GetGearItems();
             radial.Enable(true, false);
@@ -45,7 +41,7 @@ namespace RadialMenuUtilities
                 if (!(array[j] == null))
                 {
                     Panel_ActionsRadial.RadialGearDelegate radialGearDelegate = new System.Action<GearItem>(radial.UseItem);
-                    radial.AddRadialSelectionGear(Utils.GetInventoryIconTexture(array[j]).name, radialGearDelegate, array[j], false, false, 1);
+                    radial.AddRadialSelectionGear(Utils.GetInventoryIconTexture(array[j]).name, radialGearDelegate, array[j]);
                 }
             }
 
