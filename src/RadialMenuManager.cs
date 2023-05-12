@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Il2Cpp;
 using UnityEngine;
+using KeyboardUtilities;
 
 namespace RadialMenuUtilities
 {
@@ -53,7 +50,7 @@ namespace RadialMenuUtilities
                     KeyCode keyCode = radialMenu.GetKeyCode();
                     if (KeyboardUtilities.InputManager.GetKeyDown(keyCode))
                     {
-                        if(CanShowRadialMenu()) InputManager.OpenRadialMenu();
+                        if(CanShowRadialMenu()) Il2Cpp.InputManager.OpenRadialMenu();
                     }
                     if (KeyboardUtilities.InputManager.GetKey(keyCode))
                     {
@@ -70,7 +67,7 @@ namespace RadialMenuUtilities
         }
         public static bool IsOverlayActive()
         {
-            return (InterfaceManager.IsOverlayActiveCached() && !InterfaceManager.m_Panel_ActionsRadial.IsEnabled() || uConsole.IsOn());
+            return (InterfaceManager.IsOverlayActiveCached() && !InterfaceManager.GetPanel<Panel_ActionsRadial>().IsEnabled() || uConsole.IsOn());
         }
         /*public static bool IsOverlayActive()
         {
