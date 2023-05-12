@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Harmony;
+using Il2Cpp;
+using HarmonyLib;
 
 namespace RadialMenuUtilities
 {
-    internal class Patches
+    [HarmonyPatch(typeof(GameManager), nameof(GameManager.Update))]
+    internal class ShowMenus
     {
-        [HarmonyPatch(typeof(GameManager), "Update")]
-        internal class ShowMenus
+        private static void Postfix()
         {
-            private static void Postfix()
-            {
-                RadialMenuManager.MaybeShowMenu();
-            }
+            RadialMenuManager.MaybeShowMenu();
         }
+    }
 
-        [HarmonyPatch(typeof(Panel_ActionsRadial), "CanPlaceFromRadial")]
-        internal class PlaceAnything
+    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.CanPlaceFromRadial))]
+    internal class PlaceAnything
+    {
+        private static void Postfix(ref bool __result)
         {
-            private static void Postfix(ref bool __result)
-            {
-                __result = true;
-            }
+            __result = true;
         }
     }
 }
