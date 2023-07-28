@@ -1,7 +1,4 @@
-﻿using Il2Cpp;
-using UnityEngine;
-
-namespace RadialMenuUtilities
+﻿namespace RadialMenuUtilities
 {
     public enum CustomRadialMenuType
     {
@@ -12,7 +9,7 @@ namespace RadialMenuUtilities
 
     public class CustomRadialMenu
     {
-        private string[] gearNames;
+        private string[] GearNames { get; }
         private KeyCode keycode;
         private CustomRadialMenuType menuType;
         internal bool enabled = true;
@@ -21,7 +18,7 @@ namespace RadialMenuUtilities
         {
             this.keycode = keyCode;
             this.menuType = radialMenuType;
-            this.gearNames = gearNames;
+            this.GearNames = gearNames;
             this.enabled = enabled;
             RadialMenuManager.AddToList(this);
         }
@@ -61,7 +58,7 @@ namespace RadialMenuUtilities
             this.enabled = enabled;
             if (RadialMenuManager.ContainsConflict(this))
             {
-                Implementation.LogWarning("KeyCode already registered to another menu!");
+                Logger.LogWarning("KeyCode already registered to another menu!", Color.yellow);
             }
         }
         
@@ -70,11 +67,11 @@ namespace RadialMenuUtilities
             switch (menuType)
             {
                 case CustomRadialMenuType.BestOfEach:
-                    return RadialUtils.GetBestGearItems(gearNames);
+                    return RadialUtils.GetBestGearItems(GearNames);
                 case CustomRadialMenuType.WorstOfEach:
-                    return RadialUtils.GetWorstGearItems(gearNames);
+                    return RadialUtils.GetWorstGearItems(GearNames);
                 case CustomRadialMenuType.AllOfEach:
-                    return RadialUtils.GetAllGearItems(gearNames);
+                    return RadialUtils.GetAllGearItems(GearNames);
                 default:
                     return null;
             };
