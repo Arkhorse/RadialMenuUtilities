@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Il2Cpp;
-using HarmonyLib;
-
-namespace RadialMenuUtilities
+﻿namespace RadialMenuUtilities
 {
     [HarmonyPatch(typeof(GameManager), nameof(GameManager.Update))]
     internal class ShowMenus
@@ -17,10 +9,10 @@ namespace RadialMenuUtilities
         }
     }
 
-    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.CanPlaceFromRadial))]
+    [HarmonyPatch(typeof(Panel_ActionsRadial), nameof(Panel_ActionsRadial.CanPlaceFromRadial), new Type[] { typeof(GearItem) })]
     internal class PlaceAnything
     {
-        private static void Postfix(ref bool __result)
+        private static void Postfix(GearItem gi, ref bool __result)
         {
             __result = true;
         }
