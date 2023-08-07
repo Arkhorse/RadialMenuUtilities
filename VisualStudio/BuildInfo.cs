@@ -8,9 +8,9 @@
         /// <summary>Who made the mod</summary>
         public const string Author                          = "Previously: ds5678 Current: The Illusion";
         /// <summary>Current version (Using Major.Minor.Build) </summary>
-        public const string Version                         = "1.1.0";
+        public const string Version                         = "1.1.1";
         /// <summary>Name used on GUI's, like ModSettings</summary>
-        public const string GUIName                         = null;
+        public const string GUIName                         = "Radial Menu Utilities";
         /// <summary>The minimum Melon Loader version that your mod requires</summary>
         public const string MelonLoaderVersion             = "0.6.1";
         #endregion
