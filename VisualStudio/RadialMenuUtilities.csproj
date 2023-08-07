@@ -11,9 +11,10 @@
 		<DebugType>embedded</DebugType>
 	</PropertyGroup>
 	<!-- DO NOT CHANGE ANYTHING BETWEEN THESE -->
-	
+
 	<PropertyGroup>
-		<TheLongDarkPath>O:\SteamLibrary\steamapps\common\TheLongDark</TheLongDarkPath>
+		<!-- This should point to wherever your games primary EXE is -->
+		<TheLongDarkPath>O:\Steam\steamapps\common\TheLongDark</TheLongDarkPath>
 	</PropertyGroup>
 
 	<ItemGroup>
