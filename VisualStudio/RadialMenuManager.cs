@@ -1,12 +1,13 @@
-﻿using Il2Cpp;
-using UnityEngine;
-using KeyboardUtilities;
-
-namespace RadialMenuUtilities
+﻿namespace RadialMenuUtilities
 {
     internal class RadialMenuManager
     {
+#nullable disable
         private static List<CustomRadialMenu> radialMenuList = new List<CustomRadialMenu>();
+        internal static string[] ConflictsWith { get; set; }
+#nullable enable
+
+        public RadialMenuManager() { }
 
         internal static bool ContainsKeyCode(KeyCode key)
         {
@@ -30,6 +31,7 @@ namespace RadialMenuUtilities
 
                 if (bothEnabled && sameKey && !sameObject)
                 {
+                    ConflictsWith.AddItem(customRadialMenu.ModName);
                     return true;
                 }
             }
@@ -48,13 +50,13 @@ namespace RadialMenuUtilities
                 if (radialMenu.enabled)
                 {
                     KeyCode keyCode = radialMenu.GetKeyCode();
-                    if (KeyboardUtilities.InputManager.GetKeyDown(keyCode))
+                    if (InputManager.GetKeyDown(InputManager.m_CurrentContext, keyCode))
                     {
-                        if(CanShowRadialMenu()) Il2Cpp.InputManager.OpenRadialMenu();
-                    }
-                    if (KeyboardUtilities.InputManager.GetKey(keyCode))
-                    {
-                        if (CanShowRadialMenu()) radialMenu.ShowGearItems();
+                        if (CanShowRadialMenu())
+                        {
+                            InputManager.OpenRadialMenu();
+                            radialMenu.ShowGearItems();
+                        }
                     }
                 }
             }   
